@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureWipe - Secure Data Wiping for a Circular Economy</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Lottie Player Animation Library -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased">
+
+    <!-- =========== Preloader =========== -->
+    <div id="preloader">
+        <lottie-player
+            src="https://lottie.host/8e18b108-963b-4835-9b81-a76579844f2d/3g42sF4zpb.json"
+            background="transparent"
+            speed="1"
+            style="width: 300px; height: 300px;"
+            autoplay>
+        </lottie-player>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <div id="main-content">
+        <!-- =========== Header / Navbar =========== -->
+        <header class="sticky top-0 z-50 glass-card">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="#" data-page="home" class="nav-link text-2xl font-bold flex items-center cursor-pointer text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mr-2 text-sky-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" /></svg>
+                    SecureWipe
+                </a>
+                <div class="flex items-center space-x-4">
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle" class="p-2 rounded-full text-gray-300 hover:text-white focus:outline-none">
+                        <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                        <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                    </button>
+                    <!-- Hamburger Menu Button -->
+                    <div class="relative">
+                        <button id="menu-button" class="p-2 rounded-full text-gray-300 hover:text-white focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path class="hamburger-line line-top" d="M4 6h16" />
+                                <path class="hamburger-line line-middle" d="M4 12h16" />
+                                <path class="hamburger-line line-bottom" d="M4 18h16" />
+                            </svg>
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <div id="dropdown-menu" class="dropdown-menu absolute right-0 mt-2 w-48 bg-slate-800 rounded-lg shadow-lg py-2 dropdown-hidden">
+                            <a href="#" data-page="home" class="nav-link block px-4 py-2 text-gray-300 hover:bg-slate-700 hover:text-white">Home</a>
+                            <a href="#" data-page="verify" class="nav-link block px-4 py-2 text-gray-300 hover:bg-slate-700 hover:text-white">Verify Certificate</a>
+                            <a href="#" data-page="dashboard" class="nav-link block px-4 py-2 text-gray-300 hover:bg-slate-700 hover:text-white">Dashboard</a>
+                            <a href="#" data-page="about" class="nav-link block px-4 py-2 text-gray-300 hover:bg-slate-700 hover:text-white">About</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- =========== Main Content =========== -->
+        <main>
+            
+            <!-- =========== PAGE 1: Home Section =========== -->
+            <section id="page-home" class="page-content relative pt-24 pb-32 text-center">
+                <div class="gradient-bg absolute inset-0"></div>
+                <div class="relative container mx-auto px-6">
+                    <h1 class="text-4xl md:text-6xl font-black text-white leading-tight">
+                        Securely Wipe Your Data.
+                        <br>
+                        <span class="text-sky-400">Unlock Your Device's Value.</span>
+                    </h1>
+                    <p class="mt-6 max-w-2xl mx-auto text-lg text-gray-300">
+                        Our free, NIST-compliant tool permanently erases all data, allowing you to sell, donate, or recycle your old devices with complete peace of mind.
+                    </p>
+                    <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <a href="#wiping-section" id="scramble-button" data-text="Start SecureWipe" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition-transform hover:scale-105 w-full sm:w-auto">
+                            Start SecureWipe
+                        </a>
+                    </div>
+                    <!-- OS Logos Section -->
+                    <div class="mt-8 flex justify-center items-end space-x-8 md:space-x-12">
+                        <div class="flex flex-col items-center gap-2 os-logo transition-colors group">
+                            <svg class="h-12 w-12" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><title>Windows 11</title><path d="M11.375 12.625v11.375H0V12.625h11.375zm0-12.625v11.375H0V0h11.375zM24 12.625v11.375H12.625V12.625H24zm0-12.625v11.375H12.625V0H24z"/></svg>
+                            <p class="text-sm font-semibold">Windows</p>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 os-logo transition-colors group">
+                            <svg class="h-14 w-14" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><title>Linux</title><path d="M12.82,0C6.54,0,1.18,4.3,1.18,10.91c0,3.27,1.83,6.2,4.64,8.18l-1.45,2.41a.5.5,0,0,0,.64,.7l2.87-1.45c1.45,.43,2.91,.72,4.36,.72,6.27,0,11.64-4.3,11.64-10.91C24.47,4.3,19.09,0,12.82,0ZM8.47,6.82c.43-1.09,1.64-1.27,2.55-1.27.9,0,1.82,.18,1.82,1.27s-1.09,1.64-2.18,1.64-2.27-.91-2.18-1.64Zm8.18,0c.43-1.09,1.64-1.27,2.55-1.27.9,0,1.82,.18,1.82,1.27s-1.09,1.64-2.18,1.64-2.27-.91-2.18-1.64Zm-3.82,10.82c-2.91,1.09-6.45,.82-8.54-1.64a.5.5,0,0,1,.82-.64c2.27,2.36,5.27,2.18,7.63,1.27a.5.5,0,0,1,.09,1.01Z"/></svg>
+                            <p class="text-sm font-semibold">Linux</p>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 os-logo transition-colors group">
+                            <svg class="h-12 w-12" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><title>Android</title><path d="M17.4,6.21a1,1,0,0,0-1,.1,7.06,7.06,0,0,1-8.82,0,1,1,0,0,0-1.23-.17,1,1,0,0,0-.56,1.22,9,9,0,0,0,11.18,0,1,1,0,0,0-.57-1.15ZM7.5,11A1.5,1.5,0,1,0,9,12.5,1.5,1.5,0,0,0,7.5,11Zm9,0A1.5,1.5,0,1,0,18,12.5,1.5,1.5,0,0,0,16.5,11Zm3.79-1.21a1,1,0,0,0-1.41,0l-1.06,1.06a1,1,0,1,0,1.41,1.41l1.06-1.06A1,1,0,0,0,20.29,9.79ZM5.12,11.21,4.06,10.15a1,1,0,0,0-1.41,1.41l1.06,1.06a1,1,0,0,0,1.41-1.41ZM19,15H5a1,1,0,0,0-1,1v3a1,1,0,0,0,1,1H6.14a2.74,2.74,0,0,0,5.22,1.6,2.74,2.74,0,0,0,5.22-1.6H19a1,1,0,0,0,1-1V16A1,1,0,0,0,19,15Z"/></svg>
+                            <p class="text-sm font-semibold">Android</p>
+                        </div>
+                    </div>
+
+                    <!-- Wiping Form Integrated into Home Page -->
+                    <div id="wiping-section" class="pt-24">
+                        <div class="container mx-auto max-w-3xl text-center">
+                            <h2 class="text-3xl md:text-4xl font-bold text-white">Device Data Wiping</h2>
+                            <p class="text-gray-400 mt-2 mb-8">Enter your device credentials to begin the secure wiping process.</p>
+                            
+                            <div id="wiping-form-container" class="glass-card rounded-2xl p-8 text-left">
+                                <form id="wiping-form" action="#" class="space-y-6">
+                                    <div class="grid md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label for="device-id" class="block text-sm font-medium text-gray-300 mb-2">Device ID</label>
+                                            <input type="text" id="device-id" name="device-id" placeholder="e.g., DEV-2025-001" class="form-input w-full bg-slate-700 border-slate-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                                        </div>
+                                        <div>
+                                            <label for="device-type" class="block text-sm font-medium text-gray-300 mb-2">Device Type</label>
+                                            <select id="device-type" name="device-type" class="form-input w-full bg-slate-700 border-slate-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                                                <option>Select device type</option>
+                                                <option>Hard Drive (HDD)</option>
+                                                <option>Solid State Drive (SSD)</option>
+                                                <option>USB Storage</option>
+                                                <option>Mobile Device</option>
+                                                <option>Server</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-300 mb-2">Security Level</label>
+                                        <div class="grid sm:grid-cols-3 gap-4">
+                                            <div class="security-level-option">
+                                                <input type="radio" name="security-level" id="level-standard" class="hidden" checked>
+                                                <label for="level-standard" class="block border-2 border-slate-600 rounded-lg p-4 cursor-pointer transition-colors hover:border-sky-500">
+                                                    <h4 class="font-bold text-white">Standard</h4>
+                                                    <p class="text-sm text-gray-400">3-pass overwrite</p>
+                                                </label>
+                                            </div>
+                                            <div class="security-level-option">
+                                                <input type="radio" name="security-level" id="level-high" class="hidden">
+                                                <label for="level-high" class="block border-2 border-slate-600 rounded-lg p-4 cursor-pointer transition-colors hover:border-sky-500">
+                                                    <h4 class="font-bold text-white">High</h4>
+                                                    <p class="text-sm text-gray-400">7-pass overwrite</p>
+                                                </label>
+                                            </div>
+                                            <div class="security-level-option">
+                                                <input type="radio" name="security-level" id="level-military" class="hidden">
+                                                <label for="level-military" class="block border-2 border-slate-600 rounded-lg p-4 cursor-pointer transition-colors hover:border-sky-500">
+                                                    <h4 class="font-bold text-white">Military</h4>
+                                                    <p class="text-sm text-gray-400">35-pass DoD 5220.22-M</p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label for="admin-password" class="block text-sm font-medium text-gray-300 mb-2">Administrator Password</label>
+                                        <input type="password" id="admin-password" name="admin-password" placeholder="Enter administrator password" class="form-input w-full bg-slate-700 border-slate-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                                    </div>
+
+                                    <div>
+                                        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg flex items-center justify-center gap-2 transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+                                            Start Secure Wipe
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Lottie Animation Container -->
+                            <div id="animation-container" class="hidden flex flex-col items-center justify-center p-8 min-h-[500px]">
+                               <lottie-player
+                                    id="success-animation"
+                                    src="https://lottie.host/28b867c2-124b-426b-85be-2f16279f53e3/3sA325y19z.json"
+                                    background="transparent"
+                                    speed="1"
+                                    style="width: 200px; height: 200px;">
+                                </lottie-player>
+                                 <p class="text-xl font-semibold text-green-400 mt-4">Wipe process initiated successfully!</p>
+                                 <p class="text-gray-400">Redirecting to certificate verification...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- "Why Trust Us" Section -->
+                    <div class="pt-24">
+                        <div class="container mx-auto max-w-5xl text-center">
+                            <h2 class="text-3xl md:text-4xl font-bold text-white">Why Trust SecureWipe?</h2>
+                            <p class="text-gray-400 mt-2 mb-12">Industry-leading security standards combined with environmental responsibility.</p>
+
+                            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                <!-- Feature 1 -->
+                                <div class="feature-card glass-card rounded-xl p-6 text-center">
+                                    <div class="flex justify-center items-center h-16 w-16 mx-auto bg-slate-800 rounded-xl border border-slate-700">
+                                        <svg class="h-8 w-8 text-sky-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-white mt-4">Military-Grade Security</h3>
+                                    <p class="text-gray-400 text-sm mt-2">Advanced cryptographic algorithms ensure complete data destruction with mathematical proof of sanitization.</p>
+                                </div>
+                                <!-- Feature 2 -->
+                                <div class="feature-card glass-card rounded-xl p-6 text-center">
+                                    <div class="flex justify-center items-center h-16 w-16 mx-auto bg-slate-800 rounded-xl border border-slate-700">
+                                        <svg class="h-8 w-8 text-sky-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" /></svg>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-white mt-4">Eco-Friendly Process</h3>
+                                    <p class="text-gray-400 text-sm mt-2">Sustainable IT asset recycling with zero landfill waste and carbon-neutral operations.</p>
+                                </div>
+                                <!-- Feature 3 -->
+                                <div class="feature-card glass-card rounded-xl p-6 text-center">
+                                    <div class="flex justify-center items-center h-16 w-16 mx-auto bg-slate-800 rounded-xl border border-slate-700">
+                                        <svg class="h-8 w-8 text-sky-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-white mt-4">Certified Compliance</h3>
+                                    <p class="text-gray-400 text-sm mt-2">Full NIST 800-88, ISO 27001, and GDPR compliance with auditable verification certificates.</p>
+                                </div>
+                                <!-- Feature 4 -->
+                                <div class="feature-card glass-card rounded-xl p-6 text-center">
+                                    <div class="flex justify-center items-center h-16 w-16 mx-auto bg-slate-800 rounded-xl border border-slate-700">
+                                         <svg class="h-8 w-8 text-sky-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-white mt-4">Real-time Progress</h3>
+                                    <p class="text-gray-400 text-sm mt-2">Live monitoring and detailed progress reporting throughout the entire process.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========== Certificate Verification Page =========== -->
+            <section id="page-verify" class="page-content page-hidden py-20">
+                <div class="container mx-auto px-6 text-center">
+                    <div class="max-w-3xl mx-auto">
+                        <span class="inline-block bg-sky-500/10 text-sky-400 text-sm font-semibold px-4 py-1 rounded-full">Certificate Verification Portal</span>
+                        <h1 class="text-4xl md:text-5xl font-black text-white mt-4">
+                            Verify Your <span class="text-sky-400">Data Wiping Certificate</span>
+                        </h1>
+                        <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
+                            Upload your JSON certificate to instantly verify the authenticity and completeness of your secure data wiping process.
+                        </p>
+                        <div class="mt-8 flex justify-center items-center gap-x-8 gap-y-4 text-sm font-medium text-gray-400 flex-wrap">
+                            <div class="flex items-center gap-2">
+                                <svg class="h-5 w-5 text-sky-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                Cryptographically Signed
+                            </div>
+                            <div class="flex items-center gap-2">
+                               <svg class="h-5 w-5 text-sky-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                                Instant Verification
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg class="h-5 w-5 text-sky-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                                Tamper-Proof Records
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-full max-w-2xl mx-auto mt-12">
+                        <div id="drag-drop-area" class="relative glass-card rounded-xl border-2 border-dashed border-slate-600 p-10 text-center cursor-pointer">
+                            <input type="file" id="file-upload" class="hidden" accept=".json,.pdf">
+                            <label for="file-upload" class="flex flex-col items-center justify-center space-y-3 cursor-pointer">
+                                <svg class="h-12 w-12 text-sky-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" /></svg>
+                                <p class="text-lg font-semibold text-white">Upload Certificate</p>
+                                <p class="text-sm text-gray-400">Drag and drop your certificate file here, or click to browse</p>
+                                <p class="text-xs text-gray-500">Supports JSON and PDF formats</p>
+                                <div id="file-name-display" class="text-green-400 font-semibold pt-2" style="opacity:0; transition: opacity 0.3s;"></div>
+                            </label>
+                        </div>
+
+                        <button id="verify-button" class="mt-6 w-full max-w-xs mx-auto bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            Verify Certificate
+                        </button>
+                    </div>
+
+                    <div id="verification-result" class="mt-8 text-left glass-card rounded-lg p-6 min-h-[100px]" style="display: none;"></div>
+                </div>
+            </section>
+            
+            <!-- =========== Dashboard Page (UPDATED) =========== -->
+            <section id="page-dashboard" class="page-content page-hidden py-20">
+                 <div class="container mx-auto px-6 max-w-7xl">
+                    <!-- Dashboard Header -->
+                     <div class="flex flex-wrap justify-between items-center gap-4 mb-8">
+                        <div>
+                            <h2 class="text-3xl font-bold text-white">Recycler Dashboard</h2>
+                            <p class="text-gray-400 flex items-center gap-2 mt-1 text-sm">
+                                <span class="h-2 w-2 rounded-full bg-green-400 animate-pulse"></span>
+                                Live Data <span class="text-gray-500">·</span> last updated 2 minutes ago
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="glass-card text-gray-300 hover:text-white hover:border-slate-600 font-semibold py-2 px-4 rounded-lg text-sm border border-transparent">Refresh</button>
+                            <button class="glass-card text-gray-300 hover:text-white hover:border-slate-600 font-semibold py-2 px-4 rounded-lg text-sm border border-transparent">Export CSV</button>
+                            <button class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded-lg text-sm">New Certificate</button>
+                        </div>
+                    </div>
+
+                    <!-- Stat Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div class="dashboard-card glass-card rounded-xl p-5"><h3 class="text-sm font-medium text-gray-400 mb-2">Total Devices Processed</h3><p class="text-3xl font-bold text-white">2,847</p><p class="text-xs text-gray-500 mt-1"><span class="font-semibold text-green-400">+12%</span> this month</p></div>
+                        <div class="dashboard-card glass-card rounded-xl p-5"><h3 class="text-sm font-medium text-gray-400 mb-2">Certificates Issued</h3><p class="text-3xl font-bold text-white">2,834</p><p class="text-xs text-gray-500 mt-1"><span class="font-semibold text-green-400">+11%</span> successfully verified</p></div>
+                        <div class="dashboard-card glass-card rounded-xl p-5"><h3 class="text-sm font-medium text-gray-400 mb-2">Recycling Rate</h3><p class="text-3xl font-bold text-white">98.7%</p><p class="text-xs text-gray-500 mt-1"><span class="font-semibold text-green-400">+2.1%</span> zero landfill waste</p></div>
+                        <div class="dashboard-card glass-card rounded-xl p-5"><h3 class="text-sm font-medium text-gray-400 mb-2">Processing Time</h3><p class="text-3xl font-bold text-white">4.2 min</p><p class="text-xs text-gray-500 mt-1"><span class="font-semibold text-red-400">-19%</span> average per device</p></div>
+                    </div>
+
+                    <!-- Charts -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <!-- Wiping Methods Chart -->
+                        <div class="dashboard-card glass-card rounded-xl p-5">
+                            <h3 class="font-bold text-white mb-4">Wiping Methods Distribution</h3>
+                            <div class="mx-auto" style="max-width: 280px;"><canvas id="pieChart"></canvas></div>
+                        </div>
+                        <!-- Monthly Volume Chart -->
+                        <div class="dashboard-card glass-card rounded-xl p-5">
+                            <h3 class="font-bold text-white mb-4">Monthly Processing Volume</h3>
+                            <div class="mx-auto" style="max-width: 280px; height: 280px;"><canvas id="lineChart"></canvas></div>
+                        </div>
+                    </div>
+
+                    <!-- Recycling Centers Section -->
+                    <div class="flex items-start gap-4 mb-8">
+                        <div class="flex-shrink-0 flex justify-center items-center h-14 w-14 bg-green-500/10 rounded-xl">
+                             <svg class="h-8 w-8 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" /></svg>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-white">Recycling Centers</h2>
+                            <p class="text-gray-400">Find certified centers and get device valuations.</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card glass-card rounded-xl p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <h3 class="font-bold text-lg text-white">Recycling Centers</h3>
+                                <p class="text-sm text-gray-400">Find certified e-waste recycling centers and get device valuations</p>
+                            </div>
+                            <button id="valuation-modal-button" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg text-sm">Device Valuation</button>
+                        </div>
+
+                        <!-- Tabs -->
+                        <div class="dashboard-tab-container bg-slate-800 rounded-lg p-1 flex space-x-1 mb-6">
+                            <button class="dashboard-tab w-1/2 py-2 rounded-md font-semibold text-gray-300" data-tab="centers">Recycling Centers</button>
+                            <button class="dashboard-tab w-1/2 py-2 rounded-md font-semibold text-gray-300" data-tab="benefits">Benefits</button>
+                        </div>
+                        
+                        <!-- Tab Content -->
+                        <div>
+                            <!-- Recycling Centers Content -->
+                            <div id="tab-centers" class="dashboard-tab-content">
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <!-- Center 1 -->
+                                    <div class="dashboard-card glass-card rounded-lg p-5 border border-slate-700">
+                                        <div class="flex justify-between items-start">
+                                            <h4 class="font-bold text-white">E-Parisaraa Pvt Ltd</h4>
+                                            <span class="text-xs font-semibold bg-green-500/10 text-green-400 px-2 py-1 rounded-full">Verified</span>
+                                        </div>
+                                        <p class="text-sm text-gray-400">Electronic City, Bangalore</p>
+                                        <div class="text-sm text-gray-300 my-4 space-y-1">
+                                            <p>+91-80-28520521</p>
+                                            <p>info@e-parisaraa.com</p>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <p class="text-xs font-semibold text-gray-400">Certifications</p>
+                                            <div class="flex gap-2">
+                                                <span class="text-xs font-bold bg-sky-500/20 text-sky-300 px-2 py-1 rounded">R2 CERTIFIED</span>
+                                                <span class="text-xs font-bold bg-sky-500/20 text-sky-300 px-2 py-1 rounded">ISO 45001</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 pt-4 border-t border-slate-700">
+                                             <p class="text-xs font-semibold text-gray-400 mb-2">Accepted Devices</p>
+                                             <p class="text-sm text-gray-300">laptops, smartphones, tablets, servers</p>
+                                        </div>
+                                        <div class="mt-4 pt-4 border-t border-slate-700 flex justify-between items-center">
+                                            <div>
+                                                <p class="text-xs font-semibold text-gray-400">Estimated Pricing</p>
+                                                <p class="text-sm text-gray-300">Laptop: <span class="font-bold text-white">₹1500-2000</span></p>
+                                                <p class="text-sm text-gray-300">Smartphone: <span class="font-bold text-white">₹100-800</span></p>
+                                            </div>
+                                            <button class="bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2 px-4 rounded-lg text-sm">Contact Center</button>
+                                        </div>
+                                    </div>
+                                    <!-- Center 2 -->
+                                    <div class="dashboard-card glass-card rounded-lg p-5 border border-slate-700">
+                                        <div class="flex justify-between items-start">
+                                            <h4 class="font-bold text-white">Attero Recycling</h4>
+                                            <span class="text-xs font-semibold bg-green-500/10 text-green-400 px-2 py-1 rounded-full">Verified</span>
+                                        </div>
+                                        <p class="text-sm text-gray-400">Roorkee, Uttarakhand</p>
+                                        <div class="text-sm text-gray-300 my-4 space-y-1">
+                                            <p>+91-133-2715137</p>
+                                            <p>contact@attero.in</p>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <p class="text-xs font-semibold text-gray-400">Certifications</p>
+                                            <div class="flex gap-2">
+                                                <span class="text-xs font-bold bg-sky-500/20 text-sky-300 px-2 py-1 rounded">R2 CERTIFIED</span>
+                                                <span class="text-xs font-bold bg-sky-500/20 text-sky-300 px-2 py-1 rounded">ISO 45001</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 pt-4 border-t border-slate-700">
+                                             <p class="text-xs font-semibold text-gray-400 mb-2">Accepted Devices</p>
+                                             <p class="text-sm text-gray-300">all electronic devices</p>
+                                        </div>
+                                        <div class="mt-4 pt-4 border-t border-slate-700 flex justify-between items-center">
+                                            <div>
+                                                <p class="text-xs font-semibold text-gray-400">Estimated Pricing</p>
+                                                <p class="text-sm text-gray-300">Laptop: <span class="font-bold text-white">₹800-3000</span></p>
+                                                <p class="text-sm text-gray-300">Smartphone: <span class="font-bold text-white">₹200-1000</span></p>
+                                            </div>
+                                            <button class="bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2 px-4 rounded-lg text-sm">Contact Center</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Benefits Content -->
+                            <div id="tab-benefits" class="dashboard-tab-content hidden">
+                                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                    <!-- Environmental Benefits -->
+                                    <div class="dashboard-card glass-card rounded-lg p-5 border border-slate-700">
+                                        <h4 class="font-bold text-white mb-4">Environmental Benefits</h4>
+                                        <ul class="space-y-3 text-sm">
+                                            <li class="flex items-start gap-3"><svg class="h-5 w-5 text-green-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><div><strong class="text-gray-300">Reduces E-Waste:</strong> Proper recycling prevents toxic materials from landfills.</div></li>
+                                            <li class="flex items-start gap-3"><svg class="h-5 w-5 text-green-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><div><strong class="text-gray-300">Conserves Resources:</strong> Recovers precious metals like gold, silver, and copper.</div></li>
+                                            <li class="flex items-start gap-3"><svg class="h-5 w-5 text-green-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><div><strong class="text-gray-300">Reduces Carbon Footprint:</strong> Lower emissions compared to manufacturing new devices.</div></li>
+                                        </ul>
+                                    </div>
+                                    <!-- Economic Benefits -->
+                                     <div class="dashboard-card glass-card rounded-lg p-5 border border-slate-700">
+                                        <h4 class="font-bold text-white mb-4">Economic Benefits</h4>
+                                        <ul class="space-y-3 text-sm">
+                                            <li class="flex items-start gap-3"><svg class="h-5 w-5 text-green-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><div><strong class="text-gray-300">Get Cash Back:</strong> Earn money for your old devices based on condition.</div></li>
+                                            <li class="flex items-start gap-3"><svg class="h-5 w-5 text-green-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><div><strong class="text-gray-300">Tax Benefits:</strong> Potential deductions for charitable e-waste donations.</div></li>
+                                            <li class="flex items-start gap-3"><svg class="h-5 w-5 text-green-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><div><strong class="text-gray-300">Support Local Economy:</strong> Jobs created in recycling and refurbishment sectors.</div></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="dashboard-card glass-card rounded-lg p-5 border border-slate-700">
+                                    <h4 class="font-bold text-white mb-4">India's E-Waste Challenge</h4>
+                                    <div class="grid sm:grid-cols-3 text-center">
+                                        <div><p class="text-3xl font-bold text-red-400">3.2M</p><p class="text-sm text-gray-400">Tonnes E-waste/year</p></div>
+                                        <div><p class="text-3xl font-bold text-amber-400">₹50,000Cr</p><p class="text-sm text-gray-400">IT assets hoarded</p></div>
+                                        <div><p class="text-3xl font-bold text-green-400">95%</p><p class="text-sm text-gray-400">Can be recycled</p></div>
+                                    </div>
+                                    <p class="text-center text-sm text-gray-400 mt-4 pt-4 border-t border-slate-700">India generates the third-highest e-waste globally. Secure wiping and recycling helps build a circular economy and reduces environmental impact.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========== About Page =========== -->
+            <section id="page-about" class="page-content page-hidden py-20">
+                <div class="container mx-auto px-6">
+                    <!-- Top Section -->
+                    <div class="text-center">
+                        <span class="inline-block bg-sky-500/10 text-sky-400 text-sm font-semibold px-4 py-1 rounded-full">Industry Leading Since 2025</span>
+                        <h1 class="text-4xl md:text-6xl font-black text-white mt-4">Securing Data, Protecting Planet</h1>
+                        <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
+                            We combine military-grade data destruction with sustainable IT asset recycling, ensuring your sensitive information is completely eliminated while minimizing environmental impact.
+                        </p>
+                    </div>
+
+                    <!-- Three Features Section -->
+                    <div class="grid md:grid-cols-3 gap-8 mt-16 max-w-5xl mx-auto">
+                        <div class="about-card text-center glass-card rounded-xl p-6">
+                            <div class="flex justify-center items-center h-16 w-16 mx-auto bg-slate-800 rounded-xl border border-slate-700">
+                                 <svg class="h-8 w-8 text-sky-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" /></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mt-4">Security First</h3>
+                            <p class="text-gray-400 mt-2">NIST 800-88 compliant data destruction with cryptographic verification.</p>
+                        </div>
+                        <div class="about-card text-center glass-card rounded-xl p-6">
+                            <div class="flex justify-center items-center h-16 w-16 mx-auto bg-slate-800 rounded-xl border border-slate-700">
+                                <svg class="h-8 w-8 text-sky-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mt-4">Eco-Friendly</h3>
+                            <p class="text-gray-400 mt-2">Zero landfill waste with 98.7% material recovery and carbon-neutral operations.</p>
+                        </div>
+                        <div class="about-card text-center glass-card rounded-xl p-6">
+                            <div class="flex justify-center items-center h-16 w-16 mx-auto bg-slate-800 rounded-xl border border-slate-700">
+                               <svg class="h-8 w-8 text-sky-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mt-4">Certified Excellence</h3>
+                            <p class="text-gray-400 mt-2">ISO 27001, GDPR compliant with full audit trails and transparency.</p>
+                        </div>
+                    </div>
+
+                    <!-- Compliance Process Section -->
+                    <div class="mt-24 pt-16 border-t border-slate-800">
+                        <div class="text-center">
+                            <h2 class="text-3xl md:text-4xl font-bold text-white">NIST 800-88 Compliance Process</h2>
+                            <p class="mt-2 max-w-2xl mx-auto text-gray-400">
+                               Our comprehensive four-step process ensures complete data sanitization while maintaining environmental responsibility.
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+                            <!-- Step 1 -->
+                            <div class="about-card glass-card rounded-xl p-6">
+                                <span class="inline-block bg-sky-500/10 text-sky-400 text-xs font-semibold px-3 py-1 rounded-full mb-3">Step 1</span>
+                                <h4 class="font-bold text-lg text-white mb-3">Device Collection</h4>
+                                <ul class="space-y-2 text-sm text-gray-300 list-disc list-inside">
+                                    <li>Secure chain of custody</li>
+                                    <li>Asset registration</li>
+                                    <li>Inventory tracking</li>
+                                </ul>
+                            </div>
+                            <!-- Step 2 -->
+                            <div class="about-card glass-card rounded-xl p-6">
+                                <span class="inline-block bg-sky-500/10 text-sky-400 text-xs font-semibold px-3 py-1 rounded-full mb-3">Step 2</span>
+                                <h4 class="font-bold text-lg text-white mb-3">Data Wiping</h4>
+                                <ul class="space-y-2 text-sm text-gray-300 list-disc list-inside">
+                                    <li>Cryptographic erase</li>
+                                    <li>Multi-pass overwrite</li>
+                                    <li>Physical destruction</li>
+                                </ul>
+                            </div>
+                            <!-- Step 3 -->
+                            <div class="about-card glass-card rounded-xl p-6">
+                                <span class="inline-block bg-sky-500/10 text-sky-400 text-xs font-semibold px-3 py-1 rounded-full mb-3">Step 3</span>
+                                <h4 class="font-bold text-lg text-white mb-3">Certification</h4>
+                                <ul class="space-y-2 text-sm text-gray-300 list-disc list-inside">
+                                    <li>Digital signatures</li>
+                                    <li>Blockchain verification</li>
+                                    <li>Audit trails</li>
+                                </ul>
+                            </div>
+                            <!-- Step 4 -->
+                            <div class="about-card glass-card rounded-xl p-6">
+                                <span class="inline-block bg-sky-500/10 text-sky-400 text-xs font-semibold px-3 py-1 rounded-full mb-3">Step 4</span>
+                                <h4 class="font-bold text-lg text-white mb-3">Recycling</h4>
+                                <ul class="space-y-2 text-sm text-gray-300 list-disc list-inside">
+                                    <li>Zero landfill policy</li>
+                                    <li>Precious metal recovery</li>
+                                    <li>Eco-friendly disposal</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- =========== Footer =========== -->
+        <footer class="border-t border-slate-800">
+            <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+                <p>&copy; 2025 SecureWipe. A project for the Smart India Hackathon.</p>
+                <p class="text-sm mt-1">Building confidence in the circular economy.</p>
+            </div>
+        </footer>
+
+         <!-- =========== Device Valuation Modal =========== -->
+        <div id="valuation-modal" class="modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+            <!-- Overlay -->
+            <div class="modal-overlay absolute inset-0 bg-black/60"></div>
+            
+            <!-- Modal Content -->
+            <div class="modal-content relative glass-card rounded-xl w-full max-w-lg">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-white">Device Valuation Calculator</h3>
+                        <button id="valuation-modal-close" class="text-gray-400 hover:text-white">&times;</button>
+                    </div>
+
+                    <form id="valuation-form" class="space-y-4">
+                        <div>
+                            <label for="val-device-type" class="block text-sm font-medium text-gray-300 mb-2">Device Type</label>
+                            <select id="val-device-type" class="form-input w-full bg-slate-700 border-slate-600 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                                <option value="mobile">Mobile Device</option>
+                                <option value="laptop">Laptop</option>
+                                <option value="hdd">Hard Drive (HDD)</option>
+                                <option value="ssd">SSD Drive</option>
+                                <option value="server">Server</option>
+                                <option value="usb">USB Storage</option>
+                            </select>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="val-manufacturer" class="block text-sm font-medium text-gray-300 mb-2">Manufacturer</label>
+                                <input type="text" id="val-manufacturer" placeholder="e.g., Samsung" class="form-input w-full bg-slate-700 border-slate-600 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                            </div>
+                            <div>
+                                <label for="val-model" class="block text-sm font-medium text-gray-300 mb-2">Model</label>
+                                <input type="text" id="val-model" placeholder="e.g., A20s" class="form-input w-full bg-slate-700 border-slate-600 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="val-condition" class="block text-sm font-medium text-gray-300 mb-2">Condition</label>
+                            <select id="val-condition" class="form-input w-full bg-slate-700 border-slate-600 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                                <option value="0.8">Excellent - Like new</option>
+                                <option value="0.6" selected>Good - Minor wear</option>
+                                <option value="0.4">Fair - Visible wear</option>
+                                <option value="0.2">Poor - Heavy wear/damage</option>
+                            </select>
+                        </div>
+                         <div>
+                            <label for="val-storage" class="block text-sm font-medium text-gray-300 mb-2">Storage Capacity (Optional)</label>
+                            <input type="text" id="val-storage" placeholder="e.g., 128gb" class="form-input w-full bg-slate-700 border-slate-600 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                        </div>
+
+                        <!-- Result Area -->
+                        <div id="valuation-result-card" class="valuation-result-card bg-green-500/10 rounded-lg p-4 hidden">
+                             <p class="text-sm font-medium text-green-300">Estimated Value</p>
+                             <h3 id="estimated-value" class="text-3xl font-bold text-green-400">₹0</h3>
+                             <div id="valuation-breakdown" class="text-xs text-green-300/80 mt-1"></div>
+                        </div>
+
+                        <div class="pt-2 flex gap-4">
+                            <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 rounded-lg transition-colors">Calculate Value</button>
+                            <button type="reset" class="w-1/2 bg-slate-700 hover:bg-slate-600 text-gray-300 font-bold py-3 rounded-lg transition-colors">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- =========== JavaScript for Interactivity =========== -->
+        <script src="script.js" defer></script>
+    </div>
+</body>
+</html>
+
