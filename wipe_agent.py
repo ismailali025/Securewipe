@@ -1,3 +1,4 @@
+import requests # pyright: ignore[reportMissingModuleSource]
 import uuid
 import time
 import subprocess
@@ -6,7 +7,7 @@ import os
 
 # --- CONFIGURATION ---
 # The Backend Lead will provide this URL. For now, we use a placeholder.
-SERVER_URL = "http://127.0.0.1:5000/api" # Example: local Flask server
+SERVER_URL = "https://certiwipe-backend.onrender.com/api" # Example: local Flask server
 POLL_INTERVAL = 5 # Check for commands every 5 seconds
 
 def phone_home():
