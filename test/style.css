@@ -1,0 +1,70 @@
+/* --- Base Styles and Theme --- */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0B1120;
+    color: #E0E0E0;
+    transition: background-color 0.3s, color 0.3s;
+}
+.gradient-bg { background: radial-gradient(circle at top, rgba(14, 58, 110, 0.4), transparent 50%); }
+.glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+.page-hidden { display: none; }
+
+/* --- Glow Hover Effect (from Zain's code) --- */
+.feature-card, .dashboard-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-card:hover, .dashboard-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.25);
+}
+
+/* --- Your Corner Border Effect --- */
+.border-wrapper { position: relative; padding: 2px; }
+.border-wrapper::before, .border-wrapper::after, .dashboard-container::before, .dashboard-container::after {
+    content: ''; position: absolute; width: 30px; height: 30px;
+    border-color: #3b82f6; /* Tailwind sky-500 */
+    border-style: solid; transition: border-color 0.3s;
+}
+.border-wrapper::before { top: -2px; left: -2px; border-width: 2px 0 0 2px; }
+.border-wrapper::after { top: -2px; right: -2px; border-width: 2px 2px 0 0; }
+.dashboard-container::before { bottom: -2px; left: -2px; border-width: 0 0 2px 2px; }
+.dashboard-container::after { bottom: -2px; right: -2px; border-width: 0 2px 2px 0; }
+
+/* --- Your Dashboard Styles (Adapted) --- */
+.dashboard-container {
+    background-color: rgba(11, 17, 32, 0.7);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    backdrop-filter: blur(10px); border-radius: 8px;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
+    padding: 30px; width: 100%; transition: all 0.3s;
+}
+.header { text-align: center; border-bottom: 1px solid rgba(59, 130, 246, 0.2); padding-bottom: 20px; margin-bottom: 20px; }
+.dashboard-title { font-family: 'Orbitron', sans-serif; font-size: 2.2em; color: #fff; text-shadow: 0 0 8px #3b82f6; }
+.agents-title { font-family: 'Orbitron', sans-serif; color: #3b82f6; text-align: center; margin: 20px 0; }
+.connection-controls { margin-top: 15px; display: flex; justify-content: center; align-items: center; gap: 10px; }
+.connect-button { background: #3b82f6; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; }
+.connect-button.active { background: #db2777; }
+.status-light { width: 12px; height: 12px; border-radius: 50%; }
+.status-light.disconnected { background-color: #ef4444; }
+.status-light.connected { background-color: #22c55e; }
+.device-list { display: flex; flex-direction: column; gap: 15px; }
+.device-card { background-color: rgba(0,0,0,0.2); border-left: 3px solid #3b82f6; border-radius: 6px; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+.status { font-weight: bold; text-transform: capitalize; }
+.status.completed { color: #a855f7; }
+.status.error { color: #ef4444; }
+.status.registered { color: #3b82f6; }
+.wipe-button { background-color: #be123c; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+.loading { text-align: center; color: #9ca3af; font-style: italic; }
+
+/* --- Light Mode Styles --- */
+body.light-mode { background-color: #f3f4f6; color: #111827; }
+body.light-mode .gradient-bg { background: radial-gradient(circle at top, rgba(59, 130, 246, 0.1), transparent 60%); }
+body.light-mode .glass-card { background: rgba(255, 255, 255, 0.7); border: 1px solid #e5e7eb; }
+body.light-mode .text-white { color: #111827; }
+body.light-mode .text-gray-300 { color: #4b5563; }
+body.light-mode .text-gray-400 { color: #6b7280; }
+body.light-mode .border-slate-800 { border-color: #e5e7eb; }
+body.light-mode .dashboard-container { background-color: rgba(255, 255, 255, 0.8); border-color: #e5e7eb; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+body.light-mode .header { border-color: #e5e7eb; }
+body.light-mode .dashboard-title, body.light-mode .agents-title { text-shadow: none; }
+body.light-mode .device-card { background-color: #f9fafb; }

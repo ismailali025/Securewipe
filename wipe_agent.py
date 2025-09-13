@@ -7,7 +7,7 @@ import os
 
 # --- CONFIGURATION ---
 # The Backend Lead will provide this URL. For now, we use a placeholder.
-SERVER_URL = "https://certiwipe-backend.onrender.com/api" # Example: local Flask server
+SERVER_URL = "https://securewipe-backend.onrender.com/api" # Example: local Flask server
 POLL_INTERVAL = 5 # Check for commands every 5 seconds
 
 def phone_home():
@@ -17,7 +17,7 @@ def phone_home():
         machine_id = ':'.join(['{:02x}'.format((uuid.getnode() >> i) & 0xff) for i in range(0,8*6,8)][::-1])
         print(f"This machine's unique ID is: {machine_id}")
         
-        print("Registering with the CertiWipe server...")
+        print("Registering with the Secure Wipe server...")
         response = requests.post(f"{SERVER_URL}/agent/register", json={"machine_id": machine_id})
         
         if response.status_code == 200:
@@ -69,8 +69,8 @@ def execute_wipe(target_drive_path):
 
     # !! CRITICAL SAFETY CHECK FOR DEVELOPMENT !!
     # This prevents you from accidentally wiping your own computer.
-    # For the demo, we will only allow wiping a file named 'dummy_disk.img'.
-    if "dummy_disk.img" not in target_drive_path:
+    # For the demo, we will only allow wiping a file named 'dummy_disk.txt'.
+    if "dummy_disk.txt" not in target_drive_path:
         print("SAFETY LOCK ENABLED: Aborting wipe. Target is not a safe test file.")
         # In a real scenario, you'd report this error back to the server.
         requests.post(f"{SERVER_URL}/agent/report_status", json={"status": "error", "message": "Safety Lock Enabled"})
@@ -79,7 +79,7 @@ def execute_wipe(target_drive_path):
     try:
         print("Starting wipe process...")
         # The actual wipe command. -v shows progress, -n 1 overwrites once.
-        process = subprocess.run(['shred', '-v', '-n', '1', target_drive_path], check=True)
+        process = subprocess.run(['shred', '-v', '-n', '1', '-u', target_drive_path], check=True)
         print(f"SUCCESS: Successfully wiped {target_drive_path}")
         # Report completion back to the server
         requests.post(f"{SERVER_URL}/agent/report_status", json={"status": "completed", "drive": target_drive_path})
@@ -101,11 +101,11 @@ if __name__ == "__main__":
         print("DEMO MODE: Overriding target drive to a safe test file.")
         
         # Create a dummy file to test on:
-        # In your terminal, run: `dd if=/dev/zero of=dummy_disk.img bs=1M count=10`
-        safe_test_target = "dummy_disk.img"
+        # In your terminal, run: `echo This is the main Document file > dummy_disk.txt`
+        safe_test_target = "dummy_disk.txt"
 
         if os.path.exists(safe_test_target):
             execute_wipe(safe_test_target)
         else:
             print(f"FATAL: Test file '{safe_test_target}' not found.")
-            print("Please create it by running: dd if=/dev/zero of=dummy_disk.img bs=1M count=10")
+            print("Please create it by running: echo This is the main Document file > dummy_disk.txt")
